@@ -1,16 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "runstache"
-version = "0.0.2-2"
+version = "0.0.3-0"
 -- LuaDist source
 source = {
-  tag = "0.0.2-2",
+  tag = "0.0.3-0",
   url = "git://github.com/LuaDist-testing/runstache.git"
 }
 -- Original source
 -- source = {
---   url = "https://github.com/urzds/lua-runstache/archive/v0.0.2-2.tar.gz",
---   dir = "lua-runstache-0.0.2-2"
+--   url = "https://github.com/urzds/lua-runstache/archive/v0.0.3-0.tar.gz",
+--   dir = "lua-runstache-0.0.3-0"
 -- }
 description = {
   summary = "Standalone {{mustache}} rendering with Lua",

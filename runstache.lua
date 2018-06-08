@@ -1,5 +1,7 @@
 #!/usr/bin/lua
 
+local unpack = require "table".unpack
+
 local stache = require "lustache"
 local argparse = require "argparse"
 
@@ -9,13 +11,7 @@ local slurp = require "std.io".slurp
 local splitdir = require "std.io".splitdir
 
 local function runstache(args)
-	local context = args.context
-	local preprocess = args.preprocess
-
-	if preprocess then
-		context = assert(preprocess(context))
-	end
-
+	local context = args.config
 	local template = assert(slurp(args.template))
 	local partials = setmetatable({}, {__index = function(table, key) return slurp(key) end})
 	local text = assert(stache:render(template, context, partials))
@@ -41,9 +37,9 @@ local function safe_dofile(filename)
 	local results = {pcall(dofile, filename)}
 	local success = remove(results, 1)
 	if not success then
-		return nil, results[1]
+		return nil, unpack(results)
 	end
-	return results
+	return unpack(results)
 end
 
 function basename(filename)
@@ -74,25 +70,6 @@ parser:argument "output"
 	:args(1)
 	:default("STDOUT")
 	:convert(open_string("w"))
-parser:option "-e" "--env"
-	:description("Additional context")
-	:argname("<key[=value]>")
-	:args("*")
 
 local args = parser:parse()
-
-local context = args.config[1]
-if args.env then
-	for _,e in ipairs(args.env) do
-		local k, v = e:match("^([^=]*)=([^=]*)$")
-		if k and v then
-			context[k] = v
-		else
-			insert(context, e)
-		end
-	end
-end
-args.context = context
-args.preprocess = args.config[2]
-
-runstache(args)
+return runstache(args)
