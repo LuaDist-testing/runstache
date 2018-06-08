@@ -1,16 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "runstache"
-version = "0.0.2-1"
+version = "0.0.2-2"
 -- LuaDist source
 source = {
-  tag = "0.0.2-1",
+  tag = "0.0.2-2",
   url = "git://github.com/LuaDist-testing/runstache.git"
 }
 -- Original source
 -- source = {
---   url = "https://github.com/urzds/lua-runstache/archive/v0.0.2-1.tar.gz",
---   dir = "lua-runstache-0.0.2-1"
+--   url = "https://github.com/urzds/lua-runstache/archive/v0.0.2-2.tar.gz",
+--   dir = "lua-runstache-0.0.2-2"
 -- }
 description = {
   summary = "Standalone {{mustache}} rendering with Lua",
@@ -18,11 +18,13 @@ description = {
     A standalone template instantiation script for mustache templates in Lua.
     Find out more about Mustache at http://mustache.github.com.
   ]],
-  homepage = "https://github.com/urzds/runstache/",
+  homepage = "https://github.com/urzds/lua-runstache/",
   license = "MIT <http://opensource.org/licenses/MIT>"
 }
 dependencies = {
-  "lustache >= 1.3"
+  "argparse >= 0.5",
+  "lustache >= 1.3",
+  "stdlib >= 41",
 }
 build = {
   type = "none",
